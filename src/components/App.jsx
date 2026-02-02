@@ -22,6 +22,10 @@ function App() {
   function handleClick() {
     setShowForm((showForm) => !showForm);
   }
+  const handleDeleteToy = deletedID => {
+    const updatedToys = fetchToy.filter(toy => toy.id !== deletedID)
+    setFetchToy(updatedToys);
+  }
 
   return (
     <>
@@ -30,7 +34,7 @@ function App() {
       <div className="buttonContainer">
         <button onClick={handleClick}>Add a Toy</button>
       </div>
-      <ToyContainer toys={fetchToy} />
+      <ToyContainer toys={fetchToy} onDeleteToy={handleDeleteToy} />
     </>
   );
 }
