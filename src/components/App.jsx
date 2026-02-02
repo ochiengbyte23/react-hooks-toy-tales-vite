@@ -26,6 +26,11 @@ function App() {
     const updatedToys = fetchToy.filter(toy => toy.id !== deletedID)
     setFetchToy(updatedToys);
   }
+  const handleUpdatedToy = updateToy => {
+    const updatedToys = fetchToy.map(toy =>
+      (toy.id === updateToy.id ? updateToy : toy));
+    setFetchToy(updatedToys);
+  }
 
   return (
     <>
@@ -34,7 +39,10 @@ function App() {
       <div className="buttonContainer">
         <button onClick={handleClick}>Add a Toy</button>
       </div>
-      <ToyContainer toys={fetchToy} onDeleteToy={handleDeleteToy} />
+      <ToyContainer
+        toys={fetchToy}
+        onDeleteToy={handleDeleteToy}
+        onUpdateToy={handleUpdatedToy} />
     </>
   );
 }
